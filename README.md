@@ -24,3 +24,9 @@ elif you have a "addons" folder already:
 At the end it should look like this:
 
 <img src="documentation/images/plugin_installation_screen.png"/>
+
+## 💭 Feedback and Contributing
+You are always welcome to open issues for improvements or bugs:
+https://github.com/derdrache/DragAndDrop3D/issues
+
+or with a pull request to extend the code (there are no guidelines)
