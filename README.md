@@ -19,7 +19,7 @@ If you don't have a "addons" folder in your project tree:
     
 elif you have a "addons" folder already:
 
-    copy the "DragAndDrop3D" folder in you project tree
+    copy the "DragAndDrop3D" folder in your "addons" folder
 
 At the end it should look like this:
 
