@@ -12,9 +12,9 @@ func _enter_tree():
 		preload("dragIcon.png")
 	)
 	add_custom_type(
-		"DraggingObject", 
 		"DraggingObject3D", 
-		preload("res://addons/DragAndDrop3D/nodes/dragging_object.gd"), 
+		"Node3D", 
+		preload("res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd"), 
 		 preload("dragIcon.png")
 	)
 

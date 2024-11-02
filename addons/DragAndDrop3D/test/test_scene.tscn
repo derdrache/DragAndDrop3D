@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dbcc1y0c0paif"]
 
-[ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object.gd" id="2_ck3cx"]
+[ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_ck3cx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ognus"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
