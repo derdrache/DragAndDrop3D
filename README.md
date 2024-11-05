@@ -12,6 +12,8 @@ A universal Drag and Drop System for Godot version 4.X
 
 <img src="addons/DragAndDrop3D/dragIcon.png" width="16"/> DraggingObject3D - This must be the Parent of your Object that you want to drag
 
+And you need a floor with a collider, so that the 3D position can be detected.
+
 ### Add Script to DraggingObject3D
 If you want to add a script on the DraggingObject3D, you have to remove the existing script.
 The new script must have as extends DraggingObject3D and the ready function should start with super()
