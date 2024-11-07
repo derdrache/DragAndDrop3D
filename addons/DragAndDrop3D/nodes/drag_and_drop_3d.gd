@@ -1,6 +1,7 @@
 extends Node3D
 
-signal isDragging(boolean: bool, node: DraggingObject3D)
+signal dragging_started(boolean: bool, node: DraggingObject3D)
+signal dragging_stopped(boolean: bool, node: DraggingObject3D)
 
 @export var mousePositionDepth := 100
 @export var groupExclude : Array[String] = []
@@ -18,20 +19,22 @@ func _ready() -> void:
 
 	_set_group()
 	
-func _set_group():
-	if not Engine.is_editor_hint(): 
-		await get_tree().current_scene.ready
-		DragAndDropGroupHelper.add_node_to_group(self, "DragAndDrop3D")
+func _set_group() -> void:
+	if Engine.is_editor_hint(): return
+	
+	await get_tree().current_scene.ready
+	DragAndDropGroupHelper.add_node_to_group(self, "DragAndDrop3D")
 
-func _set_dragging_object_signals(group, node):
+func _set_dragging_object_signals(group: String, node: Node) -> void:
 	if group == "draggingObjects":
 		node.object_body_mouse_down.connect(set_dragging_object.bind(node))
 
-func set_dragging_object(object: DraggingObject3D):
-	if not _draggingObject: 
-		_draggingObject = object
-		_draggingObject.input_ray_pickable = false
-		isDragging.emit(true, object)
+func set_dragging_object(object: DraggingObject3D) -> void:
+	if _draggingObject: return
+	
+	_draggingObject = object
+	_draggingObject.input_ray_pickable = false
+	dragging_started.emit(true, object)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -43,7 +46,7 @@ func _input(event: InputEvent) -> void:
 func stop_drag() -> void:
 	_draggingObject.input_ray_pickable = true
 	_draggingObject = null
-	isDragging.emit(false, null)
+	dragging_stopped.emit(false, null)
 	
 func _handle_drag() -> void:
 	var mousePosition3D = _get_3d_mouse_position()
@@ -51,21 +54,19 @@ func _handle_drag() -> void:
 	if not mousePosition3D: return
 	
 	mousePosition3D.y += _draggingObject.get_height_offset()
-
-	if mousePosition3D: 
-		_draggingObject.objectBody.global_position = mousePosition3D
+	_draggingObject.objectBody.global_position = mousePosition3D
 	
 func _get_3d_mouse_position():
-	var mousePosition = get_viewport().get_mouse_position()
-	var currentCamera = get_viewport().get_camera_3d()
-	var params = PhysicsRayQueryParameters3D.new()
+	var mousePosition := get_viewport().get_mouse_position()
+	var currentCamera := get_viewport().get_camera_3d()
+	var params := PhysicsRayQueryParameters3D.new()
 	
 	params.from = currentCamera.project_ray_origin(mousePosition)
 	params.to = currentCamera.project_position(mousePosition, mousePositionDepth)
 	params.exclude = _get_excluded_objects()
 	
-	var worldspace = get_world_3d().direct_space_state
-	var intersect = worldspace.intersect_ray(params)
+	var worldspace := get_world_3d().direct_space_state
+	var intersect := worldspace.intersect_ray(params)
 
 	if not intersect: return
 	
@@ -74,7 +75,7 @@ func _get_3d_mouse_position():
 	if snapPosition: return snapPosition
 	return intersect.position
 
-func _get_excluded_objects():
+func _get_excluded_objects() -> Array:
 	var exclude := []
 	
 	exclude.append(_draggingObject.get_rid())
