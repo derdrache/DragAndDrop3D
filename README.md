@@ -8,9 +8,9 @@ A universal Drag and Drop System for Godot version 4.X
 - 🛠️ clean code
 
 ## 🚀 Usage
-<img src="addons/DragAndDrop3D/dragIcon.png" width="16"/> DragAndDrop3D - Add it to your scene to activate the Drag and Drop System
+<img src="addons/DragAndDrop3D/assets/dragIcon.png" width="16"/> DragAndDrop3D - Add it to your scene to activate the Drag and Drop System
 
-<img src="addons/DragAndDrop3D/dragIcon.png" width="16"/> DraggingObject3D - This must be the Parent of your Object that you want to drag
+<img src="addons/DragAndDrop3D/assets/dragIcon.png" width="16"/> DraggingObject3D - This must be the Parent of your Object that you want to drag
 
 And you need a floor with a collider, so that the 3D position can be detected.
 
