@@ -9,20 +9,22 @@ signal is_dragging(boolean: bool)
 @export var input_ray_pickable = true:
 	set(value):
 		input_ray_pickable = value
-		objectBody.input_ray_pickable = value
 
 var objectBody: PhysicsBody3D
 
 func _ready() -> void:
 	if not Engine.is_editor_hint(): 
 		DragAndDropGroupHelper.group_added.connect(_on_drag_and_drop_3d_added)
-		
+	
 	child_entered_tree.connect(_on_dragging_object_child_entered_tree)
 	child_exiting_tree.connect(_on_dragging_object_child_exiting_tree)
 	
 	objectBody = _get_object_body()
+	objectBody.input_ray_pickable = input_ray_pickable
 
-	if objectBody: _set_object_signals()
+	if objectBody: 
+		_set_object_signals()
+		objectBody.input_ray_pickable = input_ray_pickable
 	
 	_set_group()
 	

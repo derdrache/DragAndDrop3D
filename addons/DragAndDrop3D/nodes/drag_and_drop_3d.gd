@@ -41,8 +41,8 @@ func _input(event: InputEvent) -> void:
 		if _draggingObject: _handle_drag()
 			
 func stop_drag() -> void:
-	_draggingObject = null
 	_draggingObject.input_ray_pickable = true
+	_draggingObject = null
 	isDragging.emit(false, null)
 	
 func _handle_drag() -> void:
