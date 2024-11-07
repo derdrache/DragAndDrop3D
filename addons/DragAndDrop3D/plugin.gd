@@ -9,13 +9,13 @@ func _enter_tree():
 		"DragAndDrop3D", 
 		"Node3D", 
 		preload("res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd"), 
-		preload("res://addons/DragAndDrop3D/assets/nodeIcons/dragIcon.png")
+		preload("res://addons/DragAndDrop3D/assets/dragIcon.png")
 	)
 	add_custom_type(
 		"DraggingObject3D", 
 		"Node3D", 
 		preload("res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd"), 
-		preload("res://addons/DragAndDrop3D/assets/nodeIcons/dragIcon.png")
+		preload("res://addons/DragAndDrop3D/assets/dragIcon.png")
 	)
 
 func _exit_tree():
