@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbcc1y0c0paif"]
+[gd_scene load_steps=15 format=3 uid="uid://dbcc1y0c0paif"]
 
+[ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd" id="2_02mlq"]
 [ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_ck3cx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ognus"]
@@ -76,7 +77,6 @@ shape = SubResource("ConvexPolygonShape3D_g7k3p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("2_ck3cx")
 heightOffset = 1.0
-input_ray_pickable = null
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject"]
 
@@ -91,7 +91,6 @@ shape = SubResource("ConvexPolygonShape3D_gpefk")
 [node name="DraggingObject2" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -2)
 script = ExtResource("2_ck3cx")
-input_ray_pickable = null
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject2"]
 
@@ -105,8 +104,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tq6uf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_gpefk")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-
-[node name="DraggingObject3D" type="Node3D" parent="."]
-script = ExtResource("2_ck3cx")
-input_ray_pickable = null
+[node name="DragAndDrop3D" type="Node3D" parent="."]
+script = ExtResource("2_02mlq")
