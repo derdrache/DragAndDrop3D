@@ -43,4 +43,7 @@ At the end it should look like this:
 You are always welcome to open issues for improvements or bugs:
 https://github.com/derdrache/DragAndDrop3D/issues
 
+Let's discuss wishes and improvements:
+https://github.com/derdrache/DragAndDrop3D/discussions
+
 or with a pull request to extend the code (there are no guidelines)
