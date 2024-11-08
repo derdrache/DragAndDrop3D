@@ -1,7 +1,7 @@
 extends Node3D
 
-signal dragging_started(boolean: bool, node: DraggingObject3D)
-signal dragging_stopped(boolean: bool, node: DraggingObject3D)
+signal dragging_started()
+signal dragging_stopped()
 
 @export var mousePositionDepth := 100
 @export var groupExclude : Array[String] = []
@@ -30,23 +30,20 @@ func _set_dragging_object_signals(group: String, node: Node) -> void:
 		node.object_body_mouse_down.connect(set_dragging_object.bind(node))
 
 func set_dragging_object(object: DraggingObject3D) -> void:
-	if _draggingObject: return
-	
 	_draggingObject = object
-	_draggingObject.input_ray_pickable = false
-	dragging_started.emit(true, object)
+	dragging_started.emit()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if _draggingObject and event.button_index == 1 and not event.is_pressed():
 			stop_drag()
 	elif event is InputEventMouseMotion:
-		if _draggingObject: _handle_drag()
+		if _draggingObject: 
+			_handle_drag()
 			
 func stop_drag() -> void:
-	_draggingObject.input_ray_pickable = true
 	_draggingObject = null
-	dragging_stopped.emit(false, null)
+	dragging_stopped.emit()
 	
 func _handle_drag() -> void:
 	var mousePosition3D = _get_3d_mouse_position()

@@ -59,12 +59,10 @@ func _on_dragging_object_child_entered_tree(node: Node) -> void:
 	if objectBody: return
 	
 	if node is PhysicsBody3D: objectBody = node
-	update_configuration_warnings()
 	
 func _on_dragging_object_child_exiting_tree(node: Node) -> void:
 	if node == objectBody: 
 		objectBody = null
-		update_configuration_warnings()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	if objectBody is not PhysicsBody3D:
