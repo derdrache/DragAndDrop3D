@@ -27,6 +27,7 @@ func _set_group() -> void:
 
 func _set_dragging_object_signals(group: String, node: Node) -> void:
 	if group == "draggingObjects":
+
 		node.object_body_mouse_down.connect(set_dragging_object.bind(node))
 
 func set_dragging_object(object: DraggingObject3D) -> void:
