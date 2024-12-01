@@ -6,6 +6,7 @@ signal dragging_stopped()
 
 @export var mousePositionDepth := 100
 @export var groupExclude : Array[String] = []
+@export_flags_3d_physics var collisionMask = 1
 
 @export_group("Snap")
 @export var useSnap := false:
@@ -78,7 +79,9 @@ func _get_3d_mouse_position():
 	
 	params.from = currentCamera.project_ray_origin(mousePosition)
 	params.to = currentCamera.project_position(mousePosition, mousePositionDepth)
+	params.collide_with_areas = true
 	params.exclude = _get_excluded_objects()
+	params.set_collision_mask(collisionMask)
 	
 	var worldspace := get_world_3d().direct_space_state
 	var intersect := worldspace.intersect_ray(params)
