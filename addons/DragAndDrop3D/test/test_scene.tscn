@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dbcc1y0c0paif"]
+[gd_scene load_steps=17 format=3 uid="uid://dbcc1y0c0paif"]
 
 [ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd" id="2_02mlq"]
 [ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_ck3cx"]
@@ -42,6 +42,10 @@ albedo_color = Color(0.825007, 0.473901, 0.420067, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gpefk"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
 
+[sub_resource type="SphereMesh" id="SphereMesh_7lnm5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bqtv"]
+
 [node name="TestScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -52,9 +56,10 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 7.6, 7.3)
+transform = Transform3D(1, 0, 0, 0, 0.866026, 0.5, 0, -0.5, 0.866026, 0, 6.63, 9.185)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.000376225)
 mesh = SubResource("PlaneMesh_vkfow")
 surface_material_override/0 = SubResource("StandardMaterial3D_85oqe")
 
@@ -73,8 +78,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_lma50")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_g7k3p")
 
+[node name="DragAndDrop3D" type="Node3D" parent="."]
+script = ExtResource("2_02mlq")
+
 [node name="DraggingObject" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01664, 1, 4.57303)
 script = ExtResource("2_ck3cx")
 heightOffset = 1.0
 
@@ -89,7 +97,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tq6uf")
 shape = SubResource("ConvexPolygonShape3D_gpefk")
 
 [node name="DraggingObject2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.22254, 0.16888, 3.74204)
 script = ExtResource("2_ck3cx")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject2"]
@@ -104,5 +112,16 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tq6uf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_gpefk")
 
-[node name="DragAndDrop3D" type="Node3D" parent="."]
-script = ExtResource("2_02mlq")
+[node name="DraggingObject3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87031, 0.45269, 0)
+script = ExtResource("2_ck3cx")
+heightOffset = 0.5
+
+[node name="Area3D" type="Area3D" parent="DraggingObject3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DraggingObject3D/Area3D"]
+mesh = SubResource("SphereMesh_7lnm5")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject3D/Area3D"]
+shape = SubResource("SphereShape3D_1bqtv")
