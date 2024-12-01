@@ -7,7 +7,7 @@ signal dragging_stopped()
 @export var groupExclude : Array[String] = []
 
 @export_group("Snap")
-@export_enum("Root Node Children", "Group") var sourceSnapMode := "Root Node Children"
+@export_enum("Node Children", "Group") var sourceSnapMode := "Node Children"
 @export var snapSourceNode: Node
 @export var SnapSourceGroup: String
 
@@ -84,9 +84,10 @@ func _get_excluded_objects() -> Array:
 	
 	return exclude
 
-func _get_snap_position(object:Node):
-	if sourceSnapMode == "Root Node Children" and snapSourceNode != null:
+func _get_snap_position(collider:Node):
+	if sourceSnapMode == "Node Children" and snapSourceNode != null:
 		for node in snapSourceNode.get_children():
-			if object == node: return node.global_position
-	elif sourceSnapMode == "Group" and object.is_in_group(SnapSourceGroup):
-		return object.global_position
+			if collider == node: return node.global_position
+	elif sourceSnapMode == "Group" and collider.is_in_group(SnapSourceGroup):
+		
+		return collider.global_position
