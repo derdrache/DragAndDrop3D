@@ -6,7 +6,7 @@ signal dragging_stopped()
 
 @export var mousePositionDepth := 100
 @export var groupExclude : Array[String] = []
-@export_flags_3d_physics var collisionMask = 1
+@export_flags_3d_physics var collisionMask: int = 1
 
 @export_group("Snap")
 @export var useSnap := false:
@@ -19,8 +19,9 @@ signal dragging_stopped()
 		notify_property_list_changed()
 @export var snapSourceNode: Node
 @export var SnapSourceGroup: String
-## If [code]true[/code], you swap the dragging objects if the snap position is already taken
-## So your drag Object will take the place and the object that was previously in the place becomes the drag object
+## If [code]true[/code], you swap the dragging objects if the snap position is already taken[br]
+## So your drag Object will take the place and the object that was previously in the place becomes the drag object[br][br]
+## Only works if the object to be replaced has already been moved 
 @export var swapDraggingObjects := false
 
 var _draggingObject: DraggingObject3D
@@ -121,7 +122,9 @@ func _get_snap_position(collider:Node):
 		return collider.global_position
 
 func _swap_dragging_objects() -> bool:
-	if not swapDraggingObjects or not _otherObjectOnPosition: return false
+	if (not swapDraggingObjects or 
+		not _otherObjectOnPosition or 
+		_otherObjectOnPosition.snapPosition == null): return false
 	
 	var position = _otherObjectOnPosition.snapPosition
 	position.y += _draggingObject.get_height_offset()
