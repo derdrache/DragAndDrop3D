@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 signal dragging_started()
@@ -7,7 +8,14 @@ signal dragging_stopped()
 @export var groupExclude : Array[String] = []
 
 @export_group("Snap")
-@export_enum("Node Children", "Group") var sourceSnapMode := "Node Children"
+@export var useSnap := false:
+	set(value):
+		useSnap = value
+		notify_property_list_changed()
+@export_enum("Node Children", "Group") var sourceSnapMode := "Node Children":
+	set(value):
+		sourceSnapMode = value
+		notify_property_list_changed()
 @export var snapSourceNode: Node
 @export var SnapSourceGroup: String
 
@@ -85,9 +93,36 @@ func _get_excluded_objects() -> Array:
 	return exclude
 
 func _get_snap_position(collider:Node):
+	if not useSnap: return
+	
 	if sourceSnapMode == "Node Children" and snapSourceNode != null:
 		for node in snapSourceNode.get_children():
-			if collider == node: return node.global_position
+			if collider == node: 
+				return node.global_position
 	elif sourceSnapMode == "Group" and collider.is_in_group(SnapSourceGroup):
-		
 		return collider.global_position
+
+
+func _validate_property(property: Dictionary) -> void:
+	var hideList = []
+	
+	hideList += _editor_snap_validate()
+		
+	if property.name in hideList: 
+		property.usage = PROPERTY_USAGE_NO_EDITOR 
+
+func _editor_snap_validate() -> Array:
+	var list = []
+	
+	if not useSnap:
+		list.append("sourceSnapMode")
+		list.append("SnapSourceGroup")
+		list.append("snapSourceNode")
+	
+	if useSnap:
+		if sourceSnapMode == "Node Children":
+			list.append("SnapSourceGroup")
+		else:
+			list.append("snapSourceNode")
+			
+	return list
