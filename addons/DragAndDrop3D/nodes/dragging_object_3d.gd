@@ -10,6 +10,7 @@ signal object_body_mouse_down()
 		input_ray_pickable = value
 
 var objectBody: CollisionObject3D
+var snapPosition
 
 func _ready() -> void:
 	_check_editor_child()

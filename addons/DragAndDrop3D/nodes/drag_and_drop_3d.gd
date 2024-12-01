@@ -18,8 +18,12 @@ signal dragging_stopped()
 		notify_property_list_changed()
 @export var snapSourceNode: Node
 @export var SnapSourceGroup: String
+## If [code]true[/code], you swap the dragging objects if the snap position is already taken
+## So your drag Object will take the place and the object that was previously in the place becomes the drag object
+@export var swapDraggingObjects := false
 
 var _draggingObject: DraggingObject3D
+var _otherObjectOnPosition: DraggingObject3D
 
 func _ready() -> void:
 	if not Engine.is_editor_hint(): 
@@ -51,11 +55,16 @@ func _input(event: InputEvent) -> void:
 			_handle_drag()
 			
 func stop_drag() -> void:
+	var swaped = _swap_dragging_objects()
+	
+	if swaped: return
+	
 	_draggingObject = null
 	dragging_stopped.emit()
 	
 func _handle_drag() -> void:
 	var mousePosition3D = _get_3d_mouse_position()
+	if useSnap: _draggingObject.snapPosition = mousePosition3D
 	
 	if not mousePosition3D: return
 	
@@ -75,11 +84,17 @@ func _get_3d_mouse_position():
 	var intersect := worldspace.intersect_ray(params)
 
 	if not intersect: return
+
+	if intersect.collider.get_parent() is DraggingObject3D: _otherObjectOnPosition = intersect.collider.get_parent()
+	else: _otherObjectOnPosition = null
 	
 	var snapPosition = _get_snap_position(intersect.collider)
 	
-	if snapPosition: return snapPosition
-	return intersect.position
+	var newPosition
+	if snapPosition: newPosition =  snapPosition
+	else: newPosition = intersect.position
+	
+	return newPosition
 
 func _get_excluded_objects() -> Array:
 	var exclude := []
@@ -102,6 +117,20 @@ func _get_snap_position(collider:Node):
 	elif sourceSnapMode == "Group" and collider.is_in_group(SnapSourceGroup):
 		return collider.global_position
 
+func _swap_dragging_objects() -> bool:
+	if not swapDraggingObjects or not _otherObjectOnPosition: return false
+	
+	var position = _otherObjectOnPosition.snapPosition
+	position.y += _draggingObject.get_height_offset()
+	_draggingObject.objectBody.global_position = position
+	
+	_draggingObject = _otherObjectOnPosition
+	_otherObjectOnPosition = null
+
+	return true
+	
+			
+	
 
 func _validate_property(property: Dictionary) -> void:
 	var hideList = []
