@@ -24,6 +24,7 @@ func _ready() -> void:
 		objectBody.input_ray_pickable = input_ray_pickable
 	
 	_set_group()
+	_set_default_snap_position()
 	
 	_set_late_signals()
 
@@ -32,6 +33,10 @@ func _set_group() -> void:
 	
 	await get_tree().current_scene.ready
 	DragAndDropGroupHelper.add_node_to_group(self, "draggingObjects")
+
+func _set_default_snap_position():
+	await get_tree().physics_frame
+	snapPosition = global_position
 
 func _set_late_signals():
 	await get_tree().current_scene.ready

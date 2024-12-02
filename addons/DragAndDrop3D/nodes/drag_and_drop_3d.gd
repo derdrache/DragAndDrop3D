@@ -21,7 +21,6 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 @export var SnapSourceGroup: String
 ## If [code]true[/code], you swap the dragging objects if the snap position is already taken[br]
 ## So your drag Object will take the place and the object that was previously in the place becomes the drag object[br][br]
-## Only works if the object to be replaced has already been moved 
 @export var swapDraggingObjects := false
 
 var _draggingObject: DraggingObject3D
