@@ -67,10 +67,10 @@ func stop_drag() -> void:
 	
 func _handle_drag() -> void:
 	var mousePosition3D = _get_3d_mouse_position()
-	if useSnap: _draggingObject.snapPosition = mousePosition3D
+	
 	
 	if not mousePosition3D: return
-	
+
 	mousePosition3D.y += _draggingObject.get_height_offset()
 	_draggingObject.objectBody.global_position = mousePosition3D
 	
@@ -91,6 +91,9 @@ func _get_3d_mouse_position():
 	if not intersect: return
 	
 	var snapPosition = _get_snap_position(intersect.collider)
+	
+	if useSnap and snapPosition: 
+		_draggingObject.snapPosition = snapPosition
 	
 	_check_and_set_object_on_position(snapPosition, intersect.collider)
 	
@@ -141,6 +144,7 @@ func _swap_dragging_objects() -> bool:
 	_draggingObject.objectBody.global_position = position
 	
 	_draggingObject = _otherObjectOnPosition
+	
 	_otherObjectOnPosition = null
 
 	return true

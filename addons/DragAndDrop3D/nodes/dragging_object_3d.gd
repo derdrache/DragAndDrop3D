@@ -36,7 +36,7 @@ func _set_group() -> void:
 
 func _set_default_snap_position():
 	await get_tree().physics_frame
-	snapPosition = global_position
+	snapPosition = Vector3(global_position.x, global_position.y - get_height_offset() , global_position.z)
 
 func _set_late_signals():
 	await get_tree().current_scene.ready
