@@ -3,6 +3,8 @@ extends Node3D
 class_name DraggingObject3D
 
 signal object_body_mouse_down()
+signal dragging_started()
+signal dragging_stopped()
 
 @export var heightOffset := 0.0
 @export var input_ray_pickable = true:
@@ -22,18 +24,35 @@ func _ready() -> void:
 		objectBody.input_ray_pickable = input_ray_pickable
 	
 	_set_group()
+	
+	_set_late_signals()
 
 func _set_group() -> void:
 	if Engine.is_editor_hint(): return
 	
 	await get_tree().current_scene.ready
 	DragAndDropGroupHelper.add_node_to_group(self, "draggingObjects")
+
+func _set_late_signals():
+	await get_tree().current_scene.ready
+	
+	var dragAndDrop3D = get_tree().get_first_node_in_group("DragAndDrop3D")
+	dragAndDrop3D.dragging_started.connect(_is_dragging.bind(true))
+	dragAndDrop3D.dragging_stopped.connect(_is_dragging.bind(false))
 	
 func _get_object_body() -> CollisionObject3D:
 	for node in get_children():
 		if node is CollisionObject3D: return node
 	
 	return null	
+
+func _is_dragging(draggingObject, boolean):
+	if not draggingObject == self: return
+	
+	if boolean: dragging_started.emit()
+	else: dragging_stopped.emit()
+		
+		
 
 func _on_object_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
