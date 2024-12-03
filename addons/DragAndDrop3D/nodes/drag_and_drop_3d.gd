@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name DragAndDrop3D
 
 signal dragging_started(draggingObject: DraggingObject3D)
 signal dragging_stopped(draggingObject: DraggingObject3D)
@@ -23,7 +24,7 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 ## So your drag Object will take the place and the object that was previously in the place becomes the drag object[br][br]
 @export var swapDraggingObjects := false
 
-var _draggingObject: DraggingObject3D
+var _currentDraggingObject: DraggingObject3D
 var _otherObjectOnPosition: DraggingObject3D
 
 func _ready() -> void:
@@ -44,15 +45,15 @@ func _set_dragging_object_signals(group: String, node: Node) -> void:
 		node.object_body_mouse_down.connect(set_dragging_object.bind(node))
 
 func set_dragging_object(object: DraggingObject3D) -> void:
-	_draggingObject = object
-	dragging_started.emit(_draggingObject)
+	_currentDraggingObject = object
+	dragging_started.emit(_currentDraggingObject)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if _draggingObject and event.button_index == 1 and not event.is_pressed():
+		if _currentDraggingObject and event.button_index == 1 and not event.is_pressed():
 			stop_drag()
 	elif event is InputEventMouseMotion:
-		if _draggingObject: 
+		if _currentDraggingObject: 
 			_handle_drag()
 			
 func stop_drag() -> void:
@@ -60,9 +61,9 @@ func stop_drag() -> void:
 	
 	if swaped: return
 	
-	dragging_stopped.emit(_draggingObject)
+	dragging_stopped.emit(_currentDraggingObject)
 	
-	_draggingObject = null
+	_currentDraggingObject = null
 	
 	
 func _handle_drag() -> void:
@@ -71,8 +72,8 @@ func _handle_drag() -> void:
 	
 	if not mousePosition3D: return
 
-	mousePosition3D.y += _draggingObject.get_height_offset()
-	_draggingObject.objectBody.global_position = mousePosition3D
+	mousePosition3D.y += _currentDraggingObject.get_height_offset()
+	_currentDraggingObject.objectBody.global_position = mousePosition3D
 	
 func _get_3d_mouse_position():
 	var mousePosition := get_viewport().get_mouse_position()
@@ -93,9 +94,9 @@ func _get_3d_mouse_position():
 	var snapPosition = _get_snap_position(intersect.collider)
 	
 	if useSnap and snapPosition: 
-		_draggingObject.snapPosition = snapPosition
+		_currentDraggingObject.snapPosition = snapPosition
 	
-	_check_and_set_object_on_position(snapPosition, intersect.collider)
+	_set_dragging_object_on_position(snapPosition, intersect.collider)
 	
 	var newPosition
 	if snapPosition: newPosition =  snapPosition
@@ -106,7 +107,7 @@ func _get_3d_mouse_position():
 func _get_excluded_objects() -> Array:
 	var exclude := []
 	
-	exclude.append(_draggingObject.get_rid())
+	exclude.append(_currentDraggingObject.get_rid())
 	
 	for string in groupExclude:
 		for node in get_tree().get_nodes_in_group(string):
@@ -124,11 +125,15 @@ func _get_snap_position(collider:Node):
 	elif sourceSnapMode == "Group" and collider.is_in_group(SnapSourceGroup):
 		return collider.global_position
 
-func _check_and_set_object_on_position(snapPosition, collider):
-	if collider.get_parent() is DraggingObject3D: _otherObjectOnPosition = collider.get_parent()
+func _set_dragging_object_on_position(snapPosition, collider) -> void:
+	if collider.get_parent() is DraggingObject3D: 
+		_otherObjectOnPosition = collider.get_parent()
 	else:
-		for draggingObject in get_tree().get_nodes_in_group("draggingObjects"):
-			if draggingObject.snapPosition == snapPosition and draggingObject != _draggingObject:
+		for draggingObject: DraggingObject3D in get_tree().get_nodes_in_group("draggingObjects"):
+			var sameSnapPosition = draggingObject.snapPosition == snapPosition
+			var notCurrentObject = draggingObject != _currentDraggingObject
+			
+			if sameSnapPosition and notCurrentObject:
 				_otherObjectOnPosition = draggingObject
 				return
 				
@@ -139,12 +144,11 @@ func _swap_dragging_objects() -> bool:
 		not _otherObjectOnPosition or 
 		_otherObjectOnPosition.snapPosition == null): return false
 	
-	var position = _otherObjectOnPosition.snapPosition
-	position.y += _draggingObject.get_height_offset()
-	_draggingObject.objectBody.global_position = position
+	var position: Vector3 = _otherObjectOnPosition.snapPosition
+	position.y += _currentDraggingObject.get_height_offset()
 	
-	_draggingObject = _otherObjectOnPosition
-	
+	_currentDraggingObject.objectBody.global_position = position
+	_currentDraggingObject = _otherObjectOnPosition
 	_otherObjectOnPosition = null
 
 	return true

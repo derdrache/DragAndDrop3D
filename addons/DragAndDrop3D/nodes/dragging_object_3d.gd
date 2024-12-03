@@ -7,12 +7,12 @@ signal dragging_started()
 signal dragging_stopped()
 
 @export var heightOffset := 0.0
-@export var input_ray_pickable = true:
+@export var input_ray_pickable := true:
 	set(value):
 		input_ray_pickable = value
 
 var objectBody: CollisionObject3D
-var snapPosition
+var snapPosition: Vector3
 
 func _ready() -> void:
 	_check_editor_child()
@@ -34,14 +34,14 @@ func _set_group() -> void:
 	await get_tree().current_scene.ready
 	DragAndDropGroupHelper.add_node_to_group(self, "draggingObjects")
 
-func _set_default_snap_position():
+func _set_default_snap_position() -> void:
 	await get_tree().physics_frame
 	snapPosition = Vector3(global_position.x, global_position.y - get_height_offset() , global_position.z)
 
-func _set_late_signals():
+func _set_late_signals() -> void:
 	await get_tree().current_scene.ready
 	
-	var dragAndDrop3D = get_tree().get_first_node_in_group("DragAndDrop3D")
+	var dragAndDrop3D: DragAndDrop3D = get_tree().get_first_node_in_group("DragAndDrop3D")
 	dragAndDrop3D.dragging_started.connect(_is_dragging.bind(true))
 	dragAndDrop3D.dragging_stopped.connect(_is_dragging.bind(false))
 	
@@ -51,22 +51,17 @@ func _get_object_body() -> CollisionObject3D:
 	
 	return null	
 
-func _is_dragging(draggingObject, boolean):
+func _is_dragging(draggingObject, boolean) -> void:
 	if not draggingObject == self: return
 	
 	if boolean: dragging_started.emit()
 	else: dragging_stopped.emit()
-		
-		
 
 func _on_object_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		var button = event.button_index
-		var isPressed = event.pressed
+		var leftClicked = event.button_index == 1 and event.is_pressed()
 		
-		if button == 1 and isPressed:
-	
-			object_body_mouse_down.emit()
+		if leftClicked: object_body_mouse_down.emit()
 
 func get_rid() -> RID:
 	return objectBody.get_rid()
