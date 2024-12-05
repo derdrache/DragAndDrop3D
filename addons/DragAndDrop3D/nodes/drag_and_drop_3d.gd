@@ -9,6 +9,11 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 @export var groupExclude : Array[String] = []
 @export_flags_3d_physics var collisionMask: int = 1
 
+@export_group("Swap")
+## If [code]true[/code], you swap the dragging objects if the snap position is already taken[br]
+## So your drag Object will take the place and the object that was previously in the place becomes the drag object[br][br]
+@export var swapDraggingObjects := false
+
 @export_group("Snap")
 @export var useSnap := false:
 	set(value):
@@ -20,9 +25,7 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 		notify_property_list_changed()
 @export var snapSourceNode: Node
 @export var SnapSourceGroup: String
-## If [code]true[/code], you swap the dragging objects if the snap position is already taken[br]
-## So your drag Object will take the place and the object that was previously in the place becomes the drag object[br][br]
-@export var swapDraggingObjects := false
+@export var snapOverlap := false
 
 var _currentDraggingObject: DraggingObject3D
 var _otherObjectOnPosition: DraggingObject3D
@@ -112,6 +115,10 @@ func _get_excluded_objects() -> Array:
 	for string in groupExclude:
 		for node in get_tree().get_nodes_in_group(string):
 			exclude.append(node.get_rid())
+			
+	if useSnap and snapOverlap:
+		for object: DraggingObject3D in get_tree().get_nodes_in_group("draggingObjects"):
+			exclude.append(object.get_rid())
 	
 	return exclude
 
@@ -164,15 +171,15 @@ func _validate_property(property: Dictionary) -> void:
 func _editor_snap_validate() -> Array:
 	var list = []
 	
-	if not useSnap:
-		list.append("sourceSnapMode")
-		list.append("SnapSourceGroup")
-		list.append("snapSourceNode")
-	
 	if useSnap:
 		if sourceSnapMode == "Node Children":
 			list.append("SnapSourceGroup")
 		else:
 			list.append("snapSourceNode")
+	else:
+		list.append("sourceSnapMode")
+		list.append("SnapSourceGroup")
+		list.append("snapSourceNode")
+		list.append("snapOverlap")
 			
 	return list
