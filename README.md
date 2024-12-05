@@ -5,7 +5,9 @@ A universal Drag and Drop System for Godot version 4.X
 ## 🌟 Highlights
 
 - 👍 easy to use - only add two nodes to start
-- 🛠️ clean code
+- 🛠️ multiple features:
+  - Snap
+  - Swap
 
 ## 🚀 Usage
 <img src="addons/DragAndDrop3D/assets/dragIcon.png" width="16"/> DragAndDrop3D - Add it to your scene to activate the Drag and Drop System
