@@ -6,6 +6,7 @@ A universal Drag and Drop System for Godot version 4.X
 
 - 👍 easy to use - only add two nodes to start
 - 🛠️ multiple features:
+  - touch control
   - Snap
   - Swap
 
