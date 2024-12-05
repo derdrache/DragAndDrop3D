@@ -24,9 +24,11 @@ func _ready() -> void:
 		objectBody.input_ray_pickable = input_ray_pickable
 	
 	_set_group()
-	_set_default_snap_position()
 	
-	_set_late_signals()
+	
+	if not Engine.is_editor_hint(): 
+		_set_default_snap_position()
+		_set_late_signals()
 
 func _set_group() -> void:
 	if Engine.is_editor_hint(): return
