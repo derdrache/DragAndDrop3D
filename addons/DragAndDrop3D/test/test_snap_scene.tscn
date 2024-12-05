@@ -69,10 +69,8 @@ shape = SubResource("ConvexPolygonShape3D_g7k3p")
 
 [node name="DragAndDrop3D" type="Node3D" parent="." node_paths=PackedStringArray("snapSourceNode")]
 script = ExtResource("1_7kdnh")
-collisionMask = null
 useSnap = true
 snapSourceNode = NodePath("../Floor")
-swapDraggingObjects = true
 
 [node name="DraggingObject" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01664, 1, 4.57303)
