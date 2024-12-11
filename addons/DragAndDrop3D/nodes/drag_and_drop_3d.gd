@@ -95,7 +95,7 @@ func _get_3d_mouse_position():
 	if not intersect: return
 	
 	var snapPosition = _get_snap_position(intersect.collider)
-	var isDraggingObject = intersect.collider.get_parent() is DraggingObject3D
+	var isColliderParentDraggingObject = intersect.collider.get_parent() is DraggingObject3D
 	
 	if useSnap and snapPosition: 
 		_currentDraggingObject.snapPosition = snapPosition
@@ -103,7 +103,7 @@ func _get_3d_mouse_position():
 	_set_dragging_object_on_position(snapPosition, intersect.collider)
 	
 	var newPosition
-	if snapPosition and not isDraggingObject: newPosition =  snapPosition
+	if snapPosition and not isColliderParentDraggingObject: newPosition =  snapPosition
 	else: newPosition = intersect.position
 	
 	return newPosition
@@ -134,9 +134,6 @@ func _get_snap_position(collider:Node):
 				return node.global_position
 	elif sourceSnapMode == "Group" and collider.is_in_group(SnapSourceGroup):
 		return collider.global_position
-
-	
-	#print(collider.get_parent() is DraggingObject3D)
 
 func _set_dragging_object_on_position(snapPosition, collider) -> void:
 	if collider.get_parent() is DraggingObject3D: 
