@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://lf0d3cexuj70"]
+[gd_scene load_steps=19 format=3 uid="uid://lf0d3cexuj70"]
 
 [ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd" id="1_7kdnh"]
 [ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_xrqdt"]
@@ -37,6 +37,12 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bqtv"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_y5o4k"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gegyq"]
+points = PackedVector3Array(-10, 0, -10, -10, 0, 10, 10, 0, -10, 10, 0, 10)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_b3pwa"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2ty56"]
@@ -55,7 +61,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.713251, 0.70091, 0, -0.70091, 0.713251, 0, 7.425, 9.155)
+transform = Transform3D(1, 0, 0, 0, 0.71325, 0.700909, 0, -0.700909, 0.71325, 7, 7.425, 9.155)
 
 [node name="Box" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.1)
@@ -69,6 +75,7 @@ shape = SubResource("ConvexPolygonShape3D_g7k3p")
 
 [node name="DragAndDrop3D" type="Node3D" parent="." node_paths=PackedStringArray("snapSourceNode")]
 script = ExtResource("1_7kdnh")
+swapDraggingObjects = true
 useSnap = true
 snapSourceNode = NodePath("../Floor")
 
@@ -116,6 +123,18 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject3/Area3D"]
 shape = SubResource("SphereShape3D_1bqtv")
+
+[node name="StaticBody3D65" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -7)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D65"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+mesh = SubResource("PlaneMesh_y5o4k")
+skeleton = NodePath("../../Floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D65"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
+shape = SubResource("ConvexPolygonShape3D_gegyq")
 
 [node name="Floor" type="Node3D" parent="."]
 
