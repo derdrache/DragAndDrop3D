@@ -30,21 +30,15 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 var _currentDraggingObject: DraggingObject3D
 var _otherObjectOnPosition: DraggingObject3D
 
+func _init() -> void:
+	DragAndDropGroupHelper.add_node_to_group(self, "DragAndDrop3D")
+
 func _ready() -> void:
 	if not Engine.is_editor_hint(): 
 		DragAndDropGroupHelper.group_added.connect(_set_dragging_object_signals)
 
-	_set_group()
-	
-func _set_group() -> void:
-	if Engine.is_editor_hint(): return
-	
-	await get_tree().current_scene.ready
-	DragAndDropGroupHelper.add_node_to_group(self, "DragAndDrop3D")
-
 func _set_dragging_object_signals(group: String, node: Node) -> void:
 	if group == "draggingObjects":
-
 		node.object_body_mouse_down.connect(set_dragging_object.bind(node))
 
 func set_dragging_object(object: DraggingObject3D) -> void:
