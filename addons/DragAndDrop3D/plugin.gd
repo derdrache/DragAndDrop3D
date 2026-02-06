@@ -1,9 +1,12 @@
 @tool
 extends EditorPlugin
 
-func _ready() -> void:
+func _enable_plugin() -> void:
 	add_autoload_singleton("DragAndDropGroupHelper", "res://addons/DragAndDrop3D/DragAndDropGroupHelper.gd")
 
+func _disable_plugin() -> void:
+	remove_autoload_singleton("DragAndDropGroupHelper")
+	
 func _enter_tree():
 	add_custom_type(
 		"DragAndDrop3D", 

@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://lf0d3cexuj70"]
+[gd_scene format=3 uid="uid://lf0d3cexuj70"]
 
-[ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd" id="1_7kdnh"]
-[ext_resource type="Script" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_xrqdt"]
+[ext_resource type="Script" uid="uid://2325td714pjc" path="res://addons/DragAndDrop3D/nodes/drag_and_drop_3d.gd" id="1_7kdnh"]
+[ext_resource type="Script" uid="uid://crm45mtmm1m86" path="res://addons/DragAndDrop3D/nodes/dragging_object_3d.gd" id="2_xrqdt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ognus"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,738 +51,738 @@ points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5u2s"]
 size = Vector3(9, 1, 12)
 
-[node name="TestScene" type="Node3D"]
+[node name="TestScene" type="Node3D" unique_id=304862729]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1787616069]
 environment = SubResource("Environment_5a0hf")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1938800602]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=954312321]
 transform = Transform3D(1, 0, 0, 0, 0.71325, 0.700909, 0, -0.700909, 0.71325, 7, 7.425, 9.155)
 
-[node name="Box" type="MeshInstance3D" parent="."]
+[node name="Box" type="MeshInstance3D" parent="." unique_id=128359702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4.1)
 mesh = SubResource("BoxMesh_5yljb")
 surface_material_override/0 = SubResource("StandardMaterial3D_lma50")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Box"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Box" unique_id=1005099665]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box/StaticBody3D" unique_id=567600731]
 shape = SubResource("ConvexPolygonShape3D_g7k3p")
 
-[node name="DragAndDrop3D" type="Node3D" parent="." node_paths=PackedStringArray("snapSourceNode")]
+[node name="DragAndDrop3D" type="Node3D" parent="." unique_id=1454739332 node_paths=PackedStringArray("snapSourceNode")]
 script = ExtResource("1_7kdnh")
 swapDraggingObjects = true
 useSnap = true
 snapSourceNode = NodePath("../Floor")
 
-[node name="DraggingObject" type="Node3D" parent="."]
+[node name="DraggingObject" type="Node3D" parent="." unique_id=26591460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.01664, 1, 4.57303)
 script = ExtResource("2_xrqdt")
 heightOffset = 1.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject" unique_id=60356754]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="DraggingObject/StaticBody3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DraggingObject/StaticBody3D" unique_id=1734354421]
 mesh = SubResource("CapsuleMesh_o5twh")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tq6uf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject/StaticBody3D" unique_id=108422904]
 shape = SubResource("ConvexPolygonShape3D_gpefk")
 
-[node name="DraggingObject2" type="Node3D" parent="."]
+[node name="DraggingObject2" type="Node3D" parent="." unique_id=1847066311]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.22254, 0.16888, 3.74204)
 script = ExtResource("2_xrqdt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject2"]
+[node name="StaticBody3D" type="StaticBody3D" parent="DraggingObject2" unique_id=2363175]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="DraggingObject2/StaticBody3D"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="DraggingObject2/StaticBody3D" unique_id=70065899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_o5twh")
 skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_tq6uf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject2/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject2/StaticBody3D" unique_id=854410796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_gpefk")
 
-[node name="DraggingObject3" type="Node3D" parent="."]
+[node name="DraggingObject3" type="Node3D" parent="." unique_id=1848754264]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.87031, 0.45269, 0)
 script = ExtResource("2_xrqdt")
 heightOffset = 0.5
 
-[node name="Area3D" type="Area3D" parent="DraggingObject3"]
+[node name="Area3D" type="Area3D" parent="DraggingObject3" unique_id=692060287]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DraggingObject3/Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DraggingObject3/Area3D" unique_id=2075906345]
 mesh = SubResource("SphereMesh_7lnm5")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject3/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DraggingObject3/Area3D" unique_id=1453113409]
 shape = SubResource("SphereShape3D_1bqtv")
 
-[node name="StaticBody3D65" type="StaticBody3D" parent="."]
+[node name="StaticBody3D65" type="StaticBody3D" parent="." unique_id=1702824709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D65"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D65" unique_id=2125616688]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 mesh = SubResource("PlaneMesh_y5o4k")
 skeleton = NodePath("../../Floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D65"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D65" unique_id=145319587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7)
 shape = SubResource("ConvexPolygonShape3D_gegyq")
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="Floor" type="Node3D" parent="." unique_id=1725866623]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=917342793]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D" unique_id=439047490]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=72499746]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="Floor" unique_id=464237071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D2" unique_id=1576962094]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D2" unique_id=1464762462]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D3" type="StaticBody3D" parent="Floor" unique_id=1630994279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D3" unique_id=756075354]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D3" unique_id=1872281327]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D4" type="StaticBody3D" parent="Floor" unique_id=2010174172]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D4" unique_id=1748041082]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D4" unique_id=815746112]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D5" type="StaticBody3D" parent="Floor" unique_id=221973299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D5" unique_id=359034654]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D5" unique_id=2083741083]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D6" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D6" type="StaticBody3D" parent="Floor" unique_id=586590594]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D6"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D6" unique_id=1874819045]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D6" unique_id=161695443]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D7" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D7" type="StaticBody3D" parent="Floor" unique_id=1023245410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D7"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D7" unique_id=2071445229]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D7" unique_id=1337930324]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D8" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D8" type="StaticBody3D" parent="Floor" unique_id=1214641282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D8"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D8" unique_id=692534283]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D8" unique_id=1122806806]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D9" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D9" type="StaticBody3D" parent="Floor" unique_id=1253807334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D9"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D9" unique_id=930679496]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D9"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D9" unique_id=1441535090]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D10" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D10" type="StaticBody3D" parent="Floor" unique_id=1604861661]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D10"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D10" unique_id=241869677]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D10"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D10" unique_id=1051736090]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D11" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D11" type="StaticBody3D" parent="Floor" unique_id=1822695540]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D11"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D11" unique_id=2131428983]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D11"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D11" unique_id=1272100501]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D12" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D12" type="StaticBody3D" parent="Floor" unique_id=2109408490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D12"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D12" unique_id=1328457883]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D12"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D12" unique_id=428332280]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D13" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D13" type="StaticBody3D" parent="Floor" unique_id=1806299503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D13"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D13" unique_id=904449283]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D13"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D13" unique_id=1066323163]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D14" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D14" type="StaticBody3D" parent="Floor" unique_id=1492433600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D14"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D14" unique_id=1373134455]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D14"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D14" unique_id=1312815325]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D15" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D15" type="StaticBody3D" parent="Floor" unique_id=811225946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D15"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D15" unique_id=1536024721]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D15"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D15" unique_id=543001578]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D16" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D16" type="StaticBody3D" parent="Floor" unique_id=1833117480]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D16"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D16" unique_id=2040392847]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D16"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D16" unique_id=437020226]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D17" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D17" type="StaticBody3D" parent="Floor" unique_id=1082482826]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D17"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D17" unique_id=1872310282]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D17"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D17" unique_id=856567066]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D18" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D18" type="StaticBody3D" parent="Floor" unique_id=2081391410]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D18"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D18" unique_id=1120406342]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D18"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D18" unique_id=810451596]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D19" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D19" type="StaticBody3D" parent="Floor" unique_id=768319683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D19"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D19" unique_id=929468062]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D19"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D19" unique_id=527431332]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D20" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D20" type="StaticBody3D" parent="Floor" unique_id=1288839013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D20"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D20" unique_id=632393751]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D20"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D20" unique_id=211247778]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D21" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D21" type="StaticBody3D" parent="Floor" unique_id=147912906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D21"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D21" unique_id=1837342134]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D21"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D21" unique_id=399764595]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D22" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D22" type="StaticBody3D" parent="Floor" unique_id=1407125257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D22"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D22" unique_id=793353985]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D22"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D22" unique_id=818605685]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D23" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D23" type="StaticBody3D" parent="Floor" unique_id=2091554355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D23"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D23" unique_id=1233075430]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D23"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D23" unique_id=1913100683]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D24" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D24" type="StaticBody3D" parent="Floor" unique_id=442125491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D24"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D24" unique_id=1487642165]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D24"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D24" unique_id=77440296]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D25" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D25" type="StaticBody3D" parent="Floor" unique_id=79065423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D25"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D25" unique_id=1439446661]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D25"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D25" unique_id=531962875]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D26" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D26" type="StaticBody3D" parent="Floor" unique_id=815503880]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D26"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D26" unique_id=1738663598]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D26"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D26" unique_id=1988466216]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D27" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D27" type="StaticBody3D" parent="Floor" unique_id=1697744814]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D27"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D27" unique_id=734776012]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D27"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D27" unique_id=169470634]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D28" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D28" type="StaticBody3D" parent="Floor" unique_id=598893842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D28"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D28" unique_id=1598811345]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D28"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D28" unique_id=1850620670]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D29" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D29" type="StaticBody3D" parent="Floor" unique_id=2068633526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D29"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D29" unique_id=1254289495]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D29"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D29" unique_id=301396796]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D30" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D30" type="StaticBody3D" parent="Floor" unique_id=79699762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D30"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D30" unique_id=401572330]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D30"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D30" unique_id=192768424]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D31" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D31" type="StaticBody3D" parent="Floor" unique_id=2054593935]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D31"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D31" unique_id=377393705]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D31"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D31" unique_id=1335186361]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D32" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D32" type="StaticBody3D" parent="Floor" unique_id=1385554756]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D32"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D32" unique_id=1648380943]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D32"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D32" unique_id=625199572]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D33" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D33" type="StaticBody3D" parent="Floor" unique_id=444357711]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D33"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D33" unique_id=1569700849]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D33"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D33" unique_id=589231263]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D34" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D34" type="StaticBody3D" parent="Floor" unique_id=1984742170]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D34"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D34" unique_id=1327143194]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D34"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D34" unique_id=431594467]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D35" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D35" type="StaticBody3D" parent="Floor" unique_id=1372779218]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D35"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D35" unique_id=681922676]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D35"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D35" unique_id=1058888656]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D36" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D36" type="StaticBody3D" parent="Floor" unique_id=377168532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D36"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D36" unique_id=863156846]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D36"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D36" unique_id=946544289]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D37" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D37" type="StaticBody3D" parent="Floor" unique_id=1689557971]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D37"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D37" unique_id=1058639875]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D37"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D37" unique_id=1023656363]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D38" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D38" type="StaticBody3D" parent="Floor" unique_id=1737296686]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D38"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D38" unique_id=1431773895]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D38"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D38" unique_id=934436084]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D39" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D39" type="StaticBody3D" parent="Floor" unique_id=531918843]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D39"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D39" unique_id=1323153118]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D39"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D39" unique_id=807351589]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D40" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D40" type="StaticBody3D" parent="Floor" unique_id=2032750773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D40"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D40" unique_id=2047414649]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D40"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D40" unique_id=1923138295]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D41" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D41" type="StaticBody3D" parent="Floor" unique_id=1579416866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D41"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D41" unique_id=184980918]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D41"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D41" unique_id=1999492202]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D42" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D42" type="StaticBody3D" parent="Floor" unique_id=1641046725]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D42"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D42" unique_id=237596685]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D42"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D42" unique_id=1092775672]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D43" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D43" type="StaticBody3D" parent="Floor" unique_id=1964826136]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D43"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D43" unique_id=612510790]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D43"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D43" unique_id=11379836]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D44" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D44" type="StaticBody3D" parent="Floor" unique_id=870690131]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D44"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D44" unique_id=490483979]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D44"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D44" unique_id=1011458687]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D45" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D45" type="StaticBody3D" parent="Floor" unique_id=107796299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D45"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D45" unique_id=1709484517]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D45"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D45" unique_id=1643757668]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D46" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D46" type="StaticBody3D" parent="Floor" unique_id=1283965298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D46"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D46" unique_id=584431109]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D46"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D46" unique_id=297106212]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D47" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D47" type="StaticBody3D" parent="Floor" unique_id=390973113]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D47"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D47" unique_id=1168471673]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D47"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D47" unique_id=280707264]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D48" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D48" type="StaticBody3D" parent="Floor" unique_id=597767910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 3)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D48"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D48" unique_id=1303799577]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D48"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D48" unique_id=1757452975]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D49" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D49" type="StaticBody3D" parent="Floor" unique_id=1471765229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D49"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D49" unique_id=399169373]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D49"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D49" unique_id=899501955]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D50" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D50" type="StaticBody3D" parent="Floor" unique_id=1001136659]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D50"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D50" unique_id=315921233]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D50"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D50" unique_id=1703243949]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D51" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D51" type="StaticBody3D" parent="Floor" unique_id=1272017185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D51"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D51" unique_id=1506741101]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D51"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D51" unique_id=1967376114]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D52" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D52" type="StaticBody3D" parent="Floor" unique_id=1711589126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D52"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D52" unique_id=1316106311]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D52"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D52" unique_id=164454798]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D53" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D53" type="StaticBody3D" parent="Floor" unique_id=2115534192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D53"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D53" unique_id=1063978228]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D53"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D53" unique_id=1831673081]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D54" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D54" type="StaticBody3D" parent="Floor" unique_id=296270333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D54"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D54" unique_id=354145410]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D54"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D54" unique_id=899888048]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D55" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D55" type="StaticBody3D" parent="Floor" unique_id=268563464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D55"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D55" unique_id=405596092]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D55"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D55" unique_id=210861769]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D56" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D56" type="StaticBody3D" parent="Floor" unique_id=2031069026]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 5)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D56"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D56" unique_id=631103999]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D56"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D56" unique_id=674034919]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D57" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D57" type="StaticBody3D" parent="Floor" unique_id=1359136229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D57"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D57" unique_id=948113063]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D57"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D57" unique_id=398674155]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D58" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D58" type="StaticBody3D" parent="Floor" unique_id=1863291253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D58"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D58" unique_id=237783815]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D58"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D58" unique_id=2098758117]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D59" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D59" type="StaticBody3D" parent="Floor" unique_id=415716325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D59"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D59" unique_id=1641261600]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D59"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D59" unique_id=483092788]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D60" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D60" type="StaticBody3D" parent="Floor" unique_id=885854365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D60"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D60" unique_id=1378442886]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D60"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D60" unique_id=630764253]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D61" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D61" type="StaticBody3D" parent="Floor" unique_id=1101569831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D61"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D61" unique_id=37249220]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D61"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D61" unique_id=1062005182]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D62" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D62" type="StaticBody3D" parent="Floor" unique_id=44133242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D62"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D62" unique_id=339676942]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D62"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D62" unique_id=1990686549]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D63" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D63" type="StaticBody3D" parent="Floor" unique_id=1741833004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D63"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D63" unique_id=1928461937]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D63"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D63" unique_id=543798146]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="StaticBody3D64" type="StaticBody3D" parent="Floor"]
+[node name="StaticBody3D64" type="StaticBody3D" parent="Floor" unique_id=1139725003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 7)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D64"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/StaticBody3D64" unique_id=215961880]
 mesh = SubResource("PlaneMesh_b3pwa")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D64"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D64" unique_id=836148576]
 shape = SubResource("ConvexPolygonShape3D_2ty56")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1580795184]
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=606065555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.7, 0)
 shape = SubResource("BoxShape3D_y5u2s")

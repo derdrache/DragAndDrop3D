@@ -30,8 +30,11 @@ signal dragging_stopped(draggingObject: DraggingObject3D)
 var _currentDraggingObject: DraggingObject3D
 var _otherObjectOnPosition: DraggingObject3D
 
+var GroupHelperSingelton = preload("uid://thq3342w0cps")
+
 func _init() -> void:
-	DragAndDropGroupHelper.add_node_to_group(self, "DragAndDrop3D")
+	if not Engine.is_editor_hint(): 
+		GroupHelperSingelton.add_node_to_group(self, "DragAndDrop3D")
 
 func _ready() -> void:
 	if not Engine.is_editor_hint(): 

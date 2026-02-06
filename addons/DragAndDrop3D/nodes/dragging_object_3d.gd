@@ -14,6 +14,8 @@ signal dragging_stopped()
 var objectBody: CollisionObject3D
 var snapPosition: Vector3
 
+var GroupHelperSingelton = preload("uid://thq3342w0cps")
+
 func _ready() -> void:
 	_check_editor_child()
 
@@ -35,7 +37,7 @@ func _set_group() -> void:
 	if not get_tree().current_scene.is_node_ready():
 		await get_tree().current_scene.ready
 	
-	DragAndDropGroupHelper.add_node_to_group(self, "draggingObjects")
+	GroupHelperSingelton.add_node_to_group(self, "draggingObjects")
 
 func _set_default_snap_position() -> void:
 	await get_tree().physics_frame
